@@ -16,6 +16,8 @@
 		32320D972C18550E00DBCA8B /* GameBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32320D962C18550E00DBCA8B /* GameBorder.swift */; };
 		32320D992C18569500DBCA8B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32320D982C18569500DBCA8B /* Player.swift */; };
 		32320D9B2C185E9400DBCA8B /* PlayerFox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32320D9A2C185E9400DBCA8B /* PlayerFox.swift */; };
+		32320D9D2C18776600DBCA8B /* ConeShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32320D9C2C18776600DBCA8B /* ConeShape.swift */; };
+		32320D9F2C1897C900DBCA8B /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32320D9E2C1897C900DBCA8B /* Enemy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		32320D962C18550E00DBCA8B /* GameBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBorder.swift; sourceTree = "<group>"; };
 		32320D982C18569500DBCA8B /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		32320D9A2C185E9400DBCA8B /* PlayerFox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFox.swift; sourceTree = "<group>"; };
+		32320D9C2C18776600DBCA8B /* ConeShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConeShape.swift; sourceTree = "<group>"; };
+		32320D9E2C1897C900DBCA8B /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,8 @@
 				32320D872C184FA400DBCA8B /* Main.storyboard */,
 				32320D8A2C184FA700DBCA8B /* Assets.xcassets */,
 				32320D8C2C184FA700DBCA8B /* LaunchScreen.storyboard */,
+				32320D9C2C18776600DBCA8B /* ConeShape.swift */,
+				32320D9E2C1897C900DBCA8B /* Enemy.swift */,
 			);
 			path = PlayerMovement;
 			sourceTree = "<group>";
@@ -149,8 +155,10 @@
 				32320D862C184FA400DBCA8B /* GameViewController.swift in Sources */,
 				32320D7E2C184FA400DBCA8B /* AppDelegate.swift in Sources */,
 				32320D952C18502500DBCA8B /* GamePlayScene.swift in Sources */,
+				32320D9F2C1897C900DBCA8B /* Enemy.swift in Sources */,
 				32320D992C18569500DBCA8B /* Player.swift in Sources */,
 				32320D972C18550E00DBCA8B /* GameBorder.swift in Sources */,
+				32320D9D2C18776600DBCA8B /* ConeShape.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,6 +29,8 @@ class Player : SKShapeNode {
         physicsBody?.affectedByGravity = false
     }
     
+    
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("Not Used")
     }
