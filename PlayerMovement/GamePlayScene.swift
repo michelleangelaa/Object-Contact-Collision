@@ -7,8 +7,6 @@
 
 import SpriteKit
 
-import SpriteKit
-
 class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     
     var gameBorder = GameBorder()
@@ -21,7 +19,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     let moveDuration: TimeInterval = 2.0 // Duration for each movement
     let moveDistance: CGFloat = 100 // Distance to move
     var coneShape = ConeShape()
-    var enemy = Enemy()
+    var enemy = Enemy(size: CGSize(width: 100, height: 100))
     
     
     override required init(size: CGSize) {
@@ -32,6 +30,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         fatalError("Not used!")
     }
     
+    // scene view appearance
     override func didMove(to view: SKView) {
         backgroundColor = SKColor.blue
         addChild(gameBorder)
@@ -43,7 +42,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         
         // Position the cone shape relative to the player
         coneShape.position = CGPoint(x: player.frame.width / 2, y: 0) // Adjust position as needed
-        enemy.position = CGPoint(x: 600, y: 0)
+        enemy.position = CGPoint(x: 400, y: 0)
         // Start the initial movement
         
         
@@ -51,54 +50,37 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         movePlayer()
 //        bumpEnemy()
         
-        physicsWorld.contactDelegate = self
+        
+        // Set up physics bodies for collision detection
+//        player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
+        coneShape.physicsBody = SKPhysicsBody(rectangleOf: coneShape.path!.boundingBox.size)
 
+        enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size)
+
+        // Set the category bit masks for collision detection
+//        player.physicsBody?.categoryBitMask = 1
+        coneShape.physicsBody?.categoryBitMask = 1
+        enemy.physicsBody?.categoryBitMask = 4
+
+        // Set the contact test bit masks
+//        player.physicsBody?.contactTestBitMask = 2
+        coneShape.physicsBody?.contactTestBitMask = 5 // Collides with player (1) and enemy (4)
+        enemy.physicsBody?.contactTestBitMask = 5
+
+        // Set the collision bit masks
+//        player.physicsBody?.collisionBitMask = 0
+        coneShape.physicsBody?.collisionBitMask = 1
+        enemy.physicsBody?.collisionBitMask = 1
+        
+        // Prevent objects from falling over
+//        player.physicsBody?.affectedByGravity = false
+        coneShape.physicsBody?.affectedByGravity = false
+        enemy.physicsBody?.affectedByGravity = false
+
+        // Assign the scene as the physics world's contact delegate
+        physicsWorld.contactDelegate = self
     }
     
-//    override func update(_ currentTime: TimeInterval) {
-//        // Move the player back and forth horizontally
-//                let dx = moveSpeed * CGFloat(currentTime)
-//                if moveRight {
-//                    player.position.x += dx
-//                    if player.position.x >= size.width - player.frame.width / 2 {
-//                        player.position.x = size.width - player.frame.width / 2
-//                        moveRight = false
-//                    }
-//                } else {
-//                    player.position.x -= dx
-//                    if player.position.x <= player.frame.width / 2 {
-//                        player.position.x = player.frame.width / 2
-//                        moveRight = true
-//                    }
-//                }
-//                
-//                // Update the position of the cone shape relative to the player
-//                coneShape.position = CGPoint(x: 0, y: 0)
-//                coneShape.zRotation = player.zRotation // Rotate the cone shape with the player
-//    }
-    
-//    func bumpEnemy() {
-//        let enemySize = CGSize(width: 40, height: 40) // Adjust as needed
-//        // Set up physics bodies for collision detection
-//        player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
-//        enemy.physicsBody = SKPhysicsBody(rectangleOf: enemySize)
-//        
-//        // Set the category bit masks for collision detection
-//        player.physicsBody?.categoryBitMask = 1
-//        enemy.physicsBody?.categoryBitMask = 2
-//        
-//        // Set the contact test bit masks
-//        player.physicsBody?.contactTestBitMask = 2
-//        enemy.physicsBody?.contactTestBitMask = 1
-//        
-//        // Set the collision bit masks
-//        player.physicsBody?.collisionBitMask = 0
-//        enemy.physicsBody?.collisionBitMask = 0
-//        
-//        // Assign the scene as the physics world's contact delegate
-//        physicsWorld.contactDelegate = self
-//    }
-//    
     func movePlayer() {
         // Calculate the target position based on the direction
         let targetX = moveRight ? size.width - player.frame.width / 2 : player.frame.width / 2
@@ -120,8 +102,10 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
-        if collision == 3 { // Player and enemy collision
+        if collision == 5 { // Player and enemy collision
+            backgroundColor = SKColor.red
             print("Game Over")
+            // the real logic
         }
     }
 }

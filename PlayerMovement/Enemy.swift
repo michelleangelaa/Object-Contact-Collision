@@ -8,29 +8,21 @@
 import SpriteKit
 
 class Enemy: SKShapeNode {
-    
-    override init() {
-            super.init()
+
+    // Store the size of the enemy shape
+        var size: CGSize
         
+        init(size: CGSize) {
+            self.size = size
+            super.init()
             
-            // Define the points of the cone shape
-            let path = CGMutablePath()
-            path.move(to: CGPoint(x: -50, y: -50)) // Adjust the starting point as needed
-            path.addLine(to: CGPoint(x: 50, y: -50))
-            path.addLine(to: CGPoint(x: 50, y: 50))
-            path.addLine(to: CGPoint(x: -50, y: 50))
-            path.closeSubpath()
-            
-
-
-            // Set the path and other properties
-            self.path = path
-            fillColor = SKColor.black.withAlphaComponent(0.5) // Adjust color and opacity as needed
-            strokeColor = SKColor.clear
-    }
-    
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+            // Create the shape using the provided size
+            self.path = CGPath(rect: CGRect(origin: .zero, size: size), transform: nil)
+            self.fillColor = SKColor.black // Adjust appearance as needed
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
 }
+
