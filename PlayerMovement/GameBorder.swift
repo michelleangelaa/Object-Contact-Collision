@@ -12,7 +12,7 @@ class GameBorder : SKShapeNode {
     override init() {
         super.init()
         let thePath = CGMutablePath()
-        let rect = CGRect(x: 0, y: 0, width: 640, height: 50)
+        let rect = CGRect(x: 0, y: 0, width: 640, height: 150)
         thePath.addRect(rect)
         path = thePath
         strokeColor = SKColor.white

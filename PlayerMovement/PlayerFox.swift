@@ -12,7 +12,7 @@ class PlayerFox: SKSpriteNode {
     init() {
         // Load the image from your asset catalog
         let texture = SKTexture(imageNamed: "fox") // Replace "playerImage" with the name of your image asset
-        let desiredSize = CGSize(width: 40, height: 40) // Adjust as needed
+        let desiredSize = CGSize(width: 100, height: 100) // Adjust as needed
 
         
         // Initialize the sprite node with the texture

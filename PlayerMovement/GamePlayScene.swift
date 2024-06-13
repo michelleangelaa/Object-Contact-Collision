@@ -7,11 +7,11 @@
 
 import SpriteKit
 
-
 class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     var gameBorder = GameBorder()
 //    var player = Player()
     var player = PlayerFox()
+    var protector = Protector(size: CGSize(width: 20, height: 100))
     
     var moveRight = true // Flag to track the direction of movement
     let moveSpeed: CGFloat = 100
@@ -35,23 +35,23 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         backgroundColor = SKColor.blue
         addChild(gameBorder)
         gameBorder.addChild(player)
+        gameBorder.addChild(protector)
         gameBorder.addChild(enemy)
         player.addChild(coneShape)
         
         // Position the cone shape relative to the player
         coneShape.position = CGPoint(x: player.frame.width / 2, y: 0) // Adjust position as needed
+        protector.position = CGPoint(x: 350, y: 0)
         enemy.position = CGPoint(x: 400, y: 0)
-        // Start the initial movement
         
         movePlayer()
-//        bumpEnemy()
         
         // Set up physics bodies for collision detection
-//        player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
-        coneShape.physicsBody = SKPhysicsBody(rectangleOf: coneShape.path!.boundingBox.size)
+        let enemyPhysicsSize = CGSize(width: enemy.size.width, height: enemy.size.height)
 
-        enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size)
-
+        coneShape.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 100), center: CGPoint(x: 50, y: 50))
+        enemy.physicsBody = SKPhysicsBody(rectangleOf: enemyPhysicsSize, center: CGPoint(x: enemyPhysicsSize.width/2, y: enemyPhysicsSize.height/2))
+        
         // Manually position the collision area
 
         // Set the category bit masks for collision detection
@@ -81,18 +81,58 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         // Assign the scene as the physics world's contact delegate
         physicsWorld.contactDelegate = self
         
-        view.showsPhysics = false
+        // hide box indicator
+//        view.showsPhysics = false
     }
     
+//    func movePlayer() {
+//        // Calculate the target position based on the direction
+//        let targetX = moveRight ? protector.position.x :  player.frame.width / 2
+//
+//        // Create an action to move the player to the target position
+//        let moveAction = SKAction.move(to: CGPoint(x: targetX, y: player.position.y), duration: moveDuration)
+//
+//        // Switch the direction for the next movement
+//        moveRight = !moveRight
+//
+//        // Call movePlayer again when the movement is complete to continue the back and forth motion
+//        let completionAction = SKAction.run {
+//            self.movePlayer()
+//        }
+//
+//        // Run the sequence of actions
+//        player.run(SKAction.sequence([moveAction, completionAction]))
+//    }
     func movePlayer() {
         // Calculate the target position based on the direction
-        let targetX = moveRight ? size.width - player.frame.width / 2 : player.frame.width / 2
+        let targetX = player.position.x < protector.position.x ? protector.position.x : size.width - player.frame.width / 2
+        
+        // Calculate the duration based on the distance to move
+        let distance = abs(targetX - player.position.x)
+        let duration = TimeInterval(distance / moveSpeed)
         
         // Create an action to move the player to the target position
-        let moveAction = SKAction.move(to: CGPoint(x: targetX, y: player.position.y), duration: moveDuration)
+        let moveAction = SKAction.move(to: CGPoint(x: targetX, y: player.position.y), duration: duration)
         
-        // Switch the direction for the next movement
-        moveRight = !moveRight
+        // Call movePlayerBack again when the movement is complete to continue the back and forth motion
+        let completionAction = SKAction.run {
+            self.movePlayerBack()
+        }
+        
+        // Run the sequence of actions
+        player.run(SKAction.sequence([moveAction, completionAction]))
+    }
+
+    func movePlayerBack() {
+        // Calculate the target position to move back to the left
+        let targetX = player.position.x > protector.position.x ? protector.position.x : player.frame.width / 2
+        
+        // Calculate the duration based on the distance to move
+        let distance = abs(player.position.x - targetX)
+        let duration = TimeInterval(distance / moveSpeed)
+        
+        // Create an action to move the player back to the left
+        let moveAction = SKAction.move(to: CGPoint(x: targetX, y: player.position.y), duration: duration)
         
         // Call movePlayer again when the movement is complete to continue the back and forth motion
         let completionAction = SKAction.run {
@@ -102,7 +142,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         // Run the sequence of actions
         player.run(SKAction.sequence([moveAction, completionAction]))
     }
-    
+
     func didBegin(_ contact: SKPhysicsContact) {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         if collision == 5 { // Player and enemy collision
@@ -113,7 +153,6 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
             enemy.removeAllActions()
             coneShape.removeAllActions()
             player.removeAllActions()
-            // the real logic
         }
     }
 }
