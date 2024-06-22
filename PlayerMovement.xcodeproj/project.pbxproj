@@ -12,7 +12,7 @@
 		320F7BBE2C26D65E00551739 /* GameBorder2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F7BBD2C26D65E00551739 /* GameBorder2.swift */; };
 		320F7BC02C26D7F600551739 /* EnemyBear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F7BBF2C26D7F600551739 /* EnemyBear.swift */; };
 		320F7BC32C26D89000551739 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F7BC22C26D89000551739 /* Color.swift */; };
-		320F7BC52C26DE9A00551739 /* EnemyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F7BC42C26DE9A00551739 /* EnemyScene.swift */; };
+		320F7BCA2C26E34600551739 /* EnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F7BC92C26E34600551739 /* EnemyNode.swift */; };
 		322A7D5F2C1ADC7800C1E34A /* Protector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322A7D5E2C1ADC7800C1E34A /* Protector.swift */; };
 		32320D7E2C184FA400DBCA8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32320D7D2C184FA400DBCA8B /* AppDelegate.swift */; };
 		32320D862C184FA400DBCA8B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32320D852C184FA400DBCA8B /* GameViewController.swift */; };
@@ -33,7 +33,7 @@
 		320F7BBD2C26D65E00551739 /* GameBorder2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBorder2.swift; sourceTree = "<group>"; };
 		320F7BBF2C26D7F600551739 /* EnemyBear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyBear.swift; sourceTree = "<group>"; };
 		320F7BC22C26D89000551739 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		320F7BC42C26DE9A00551739 /* EnemyScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyScene.swift; sourceTree = "<group>"; };
+		320F7BC92C26E34600551739 /* EnemyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyNode.swift; sourceTree = "<group>"; };
 		322A7D5E2C1ADC7800C1E34A /* Protector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protector.swift; sourceTree = "<group>"; };
 		32320D7A2C184FA400DBCA8B /* PlayerMovement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerMovement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32320D7D2C184FA400DBCA8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,10 +68,67 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		320F7BC62C26E22300551739 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				320F7BCD2C26E55A00551739 /* Extra */,
+				32320D9A2C185E9400DBCA8B /* PlayerFox.swift */,
+				32320D982C18569500DBCA8B /* Player.swift */,
+				32320D9E2C1897C900DBCA8B /* Enemy.swift */,
+				322A7D5E2C1ADC7800C1E34A /* Protector.swift */,
+				320F7BBF2C26D7F600551739 /* EnemyBear.swift */,
+				320F7BC82C26E2AE00551739 /* Guard */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		320F7BC72C26E23300551739 /* Enivironment */ = {
+			isa = PBXGroup;
+			children = (
+				320F7BBD2C26D65E00551739 /* GameBorder2.swift */,
+				32320D962C18550E00DBCA8B /* GameBorder.swift */,
+			);
+			path = Enivironment;
+			sourceTree = "<group>";
+		};
+		320F7BC82C26E2AE00551739 /* Guard */ = {
+			isa = PBXGroup;
+			children = (
+				32320D9C2C18776600DBCA8B /* ConeShape.swift */,
+				320F7BBB2C26CA1500551739 /* CameraRange.swift */,
+			);
+			path = Guard;
+			sourceTree = "<group>";
+		};
+		320F7BCB2C26E47700551739 /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				320F7BC92C26E34600551739 /* EnemyNode.swift */,
+			);
+			path = Node;
+			sourceTree = "<group>";
+		};
+		320F7BCC2C26E53D00551739 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				32320D7D2C184FA400DBCA8B /* AppDelegate.swift */,
+				32320D852C184FA400DBCA8B /* GameViewController.swift */,
+				32320D942C18502500DBCA8B /* GamePlayScene.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		320F7BCD2C26E55A00551739 /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				320F7BB92C26C6F700551739 /* Arrow.swift */,
+			);
+			path = Extra;
+			sourceTree = "<group>";
+		};
 		32320D712C184FA400DBCA8B = {
 			isa = PBXGroup;
 			children = (
-				320F7BC12C26D88000551739 /* Extensions */,
 				32320D7C2C184FA400DBCA8B /* PlayerMovement */,
 				32320D7B2C184FA400DBCA8B /* Products */,
 			);
@@ -88,23 +145,14 @@
 		32320D7C2C184FA400DBCA8B /* PlayerMovement */ = {
 			isa = PBXGroup;
 			children = (
-				32320D9A2C185E9400DBCA8B /* PlayerFox.swift */,
-				32320D982C18569500DBCA8B /* Player.swift */,
-				32320D962C18550E00DBCA8B /* GameBorder.swift */,
-				320F7BBD2C26D65E00551739 /* GameBorder2.swift */,
-				32320D942C18502500DBCA8B /* GamePlayScene.swift */,
-				320F7BC42C26DE9A00551739 /* EnemyScene.swift */,
-				32320D7D2C184FA400DBCA8B /* AppDelegate.swift */,
-				32320D852C184FA400DBCA8B /* GameViewController.swift */,
+				320F7BCC2C26E53D00551739 /* Main */,
+				320F7BCB2C26E47700551739 /* Node */,
+				320F7BC72C26E23300551739 /* Enivironment */,
+				320F7BC62C26E22300551739 /* Entities */,
+				320F7BC12C26D88000551739 /* Extensions */,
 				32320D872C184FA400DBCA8B /* Main.storyboard */,
 				32320D8A2C184FA700DBCA8B /* Assets.xcassets */,
 				32320D8C2C184FA700DBCA8B /* LaunchScreen.storyboard */,
-				320F7BBB2C26CA1500551739 /* CameraRange.swift */,
-				32320D9C2C18776600DBCA8B /* ConeShape.swift */,
-				32320D9E2C1897C900DBCA8B /* Enemy.swift */,
-				322A7D5E2C1ADC7800C1E34A /* Protector.swift */,
-				320F7BB92C26C6F700551739 /* Arrow.swift */,
-				320F7BBF2C26D7F600551739 /* EnemyBear.swift */,
 			);
 			path = PlayerMovement;
 			sourceTree = "<group>";
@@ -185,12 +233,12 @@
 				320F7BBE2C26D65E00551739 /* GameBorder2.swift in Sources */,
 				32320D7E2C184FA400DBCA8B /* AppDelegate.swift in Sources */,
 				320F7BBA2C26C6F700551739 /* Arrow.swift in Sources */,
-				320F7BC52C26DE9A00551739 /* EnemyScene.swift in Sources */,
 				320F7BC02C26D7F600551739 /* EnemyBear.swift in Sources */,
 				32320D952C18502500DBCA8B /* GamePlayScene.swift in Sources */,
 				32320D9F2C1897C900DBCA8B /* Enemy.swift in Sources */,
 				32320D992C18569500DBCA8B /* Player.swift in Sources */,
 				320F7BC32C26D89000551739 /* Color.swift in Sources */,
+				320F7BCA2C26E34600551739 /* EnemyNode.swift in Sources */,
 				32320D972C18550E00DBCA8B /* GameBorder.swift in Sources */,
 				32320D9D2C18776600DBCA8B /* ConeShape.swift in Sources */,
 				320F7BBC2C26CA1500551739 /* CameraRange.swift in Sources */,

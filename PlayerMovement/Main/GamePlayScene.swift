@@ -60,6 +60,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         coneShape.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 100), center: CGPoint(x: 50, y: 50))
         enemy.physicsBody = SKPhysicsBody(rectangleOf: enemyPhysicsSize, center: CGPoint(x: enemyPhysicsSize.width/2, y: enemyPhysicsSize.height/2))
         protector.physicsBody = SKPhysicsBody(rectangleOf: protector.size, center: CGPoint(x:protector.size.width/2, y: protector.size.height/2))
+        enemyGuard.physicsBody = SKPhysicsBody(rectangleOf: enemyPhysicsSize, center: CGPoint(x: enemyPhysicsSize.width/2, y: enemyPhysicsSize.height/2))
         
         // Manually position the collision area
 
@@ -87,6 +88,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         protector.physicsBody?.affectedByGravity = false
         coneShape.physicsBody?.affectedByGravity = false
         enemy.physicsBody?.affectedByGravity = false
+        enemyGuard.physicsBody?.affectedByGravity = false
 
         // Assign the scene as the physics world's contact delegate
         physicsWorld.contactDelegate = self

@@ -13,4 +13,5 @@ extension Color {
 
 struct ColorTheme {
     let lightColor = Color("yellow")
+    let floorColor = Color("brown")
 }
