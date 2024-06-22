@@ -6,6 +6,7 @@
 //
 
 import SpriteKit
+import SwiftUI
 
 class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     var gameBorder = GameBorder()
@@ -21,6 +22,8 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     let moveDistance: CGFloat = 100 // Distance to move
     var coneShape = ConeShape()
     var enemy = Enemy(size: CGSize(width: 100, height: 100))
+    let guardSquareTrack = EnemyNode()
+    
     
     override required init(size: CGSize) {
         super.init(size: size)
@@ -33,9 +36,9 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     
     // scene view appearance
     override func didMove(to view: SKView) {
-        backgroundColor = SKColor.blue
+        backgroundColor = UIColor(Color.theme.floorColor)
         addChild(gameBorder)
-        addChild(enemyGuard)
+        addChild(guardSquareTrack)
         gameBorder.addChild(player)
         gameBorder.addChild(protector)
         gameBorder.addChild(enemy)
@@ -50,6 +53,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         enemy.position = CGPoint(x: 400, y: 0)
         player.position = CGPoint(x: coneShape.frame.width / 2, y: 0)
         protector.zPosition = enemy.zPosition + 1
+        guardSquareTrack.position = CGPoint(x: 320, y: 40)
 
         
         movePlayer()
