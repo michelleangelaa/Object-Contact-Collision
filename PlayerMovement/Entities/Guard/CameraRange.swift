@@ -32,14 +32,20 @@ class CameraRange: SKShapeNode {
         fillColor = UIColor(Color.theme.lightColor)
         strokeColor = SKColor.clear
         alpha = 0.8
-        self.setScale(0.5)
         
         // Rotate the shape by 90 degrees
         zRotation = .pi / 2
+        
+        // Add physics body with the same shape
+        let physicsBody = SKPhysicsBody(polygonFrom: path)
+        physicsBody.isDynamic = false // Set to true if you want it to interact with other dynamic bodies
+        self.physicsBody = physicsBody
+                
+        setScale(0.5)
     }
     
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("")
     }
 }

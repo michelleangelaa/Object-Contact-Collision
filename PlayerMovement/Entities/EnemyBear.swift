@@ -11,20 +11,20 @@ class EnemyBear: SKSpriteNode {
     
     init() {
         // Load the image from your asset catalog
-        let texture = SKTexture(imageNamed: "Bear") // Replace "playerImage" with the name of your image asset
-        let desiredSize = CGSize(width: 100, height: 100) // Adjust as needed
-
+        let texture = SKTexture(imageNamed: "Bear") // Replace "Bear" with the name of your image asset
+        let originalSize = texture.size()
+        let scaledSize = CGSize(width: originalSize.width * 2, height: originalSize.height * 2)
         
         // Initialize the sprite node with the texture
-        super.init(texture: texture, color: .clear, size: desiredSize)
+        super.init(texture: texture, color: .clear, size: scaledSize)
+        self.setScale(2)
         
-        // Set up physics body if needed
-        physicsBody = SKPhysicsBody(texture: texture, size: desiredSize)
-        physicsBody?.allowsRotation = false
-        physicsBody?.affectedByGravity = false
-        position = CGPoint(x: 40, y: 100)
-
+        // Set up physics body
+        let physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
+        physicsBody.isDynamic = false // Set to true if you want it to interact with other dynamic bodies
+        self.physicsBody = physicsBody
         
+       
         // Set other properties as needed
         name = "enemyBear"
     }
@@ -34,3 +34,11 @@ class EnemyBear: SKSpriteNode {
     }
 }
 
+// In your GameScene or wherever you are adding the enemy bear
+class GameScene: SKScene {
+    override func didMove(to view: SKView) {
+        let enemyBear = EnemyBear()
+        enemyBear.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        addChild(enemyBear)
+    }
+}

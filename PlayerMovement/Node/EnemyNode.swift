@@ -13,8 +13,8 @@ class EnemyNode: SKNode {
         
         // add the guard image
         let sprite = SKSpriteNode(imageNamed: "Bear")
-        sprite.setScale(2)
         sprite.position = CGPoint(x: 20, y: 20)
+        sprite.setScale(2)
         
         // call the vision range
         let range = CameraRange()
@@ -53,24 +53,38 @@ class EnemyNode: SKNode {
         let moveDown = SKAction.moveBy(x: 0, y: -200, duration: 2)
         
         // Define actions to flip the sprite
-        let flipHorizontallyRight = SKAction.run { sprite.xScale = -2.0 }
-        let flipHorizontallyLeft = SKAction.run { sprite.xScale = 2.0 }
+//        let flipHorizontallyRight = SKAction.run {
+//            self.xScale *= -1
+//        }
+//        let flipHorizontallyLeft = SKAction.run {
+//            self.xScale *= -1
+//        }
+////        
+        let flipHorizontallyRight = SKAction.run { sprite.xScale = -2.0}
+        let flipHorizontallyLeft = SKAction.run { sprite.xScale = 2.0}
+        
          
         // Create a sequence of actions with flipping included
         let sequence = SKAction.sequence([
             moveLeft,
-            flipHorizontallyLeft,
             moveUp,
             flipHorizontallyRight,
             moveRight,
             moveDown,
             flipHorizontallyLeft
         ])
+        
+        if sequence == flipHorizontallyRight {
+            range.xScale = -1.0
+            range.physicsBody?.node?.xScale = -1.0
+
+        }
 
         let repeatForever = SKAction.repeatForever(sequence)
         
         // Run the action on the node
         sprite.run(repeatForever)
+        
     }
     
     @available(*, unavailable)

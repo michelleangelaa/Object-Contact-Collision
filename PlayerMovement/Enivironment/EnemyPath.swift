@@ -44,6 +44,7 @@ class EnemyPath: SKNode {
             
             // Add the circle to the parent node
             addChild(circle)
+        
         }
     }
     

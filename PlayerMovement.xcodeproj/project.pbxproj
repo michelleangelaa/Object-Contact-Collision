@@ -14,6 +14,8 @@
 		320F7BC32C26D89000551739 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F7BC22C26D89000551739 /* Color.swift */; };
 		320F7BCA2C26E34600551739 /* EnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F7BC92C26E34600551739 /* EnemyNode.swift */; };
 		320F7BCF2C26F23F00551739 /* EnemyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F7BCE2C26F23F00551739 /* EnemyPath.swift */; };
+		320F7BD12C275AE600551739 /* CCTVNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F7BD02C275AE600551739 /* CCTVNode.swift */; };
+		320F7BD32C275AF400551739 /* CCTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F7BD22C275AF400551739 /* CCTV.swift */; };
 		322A7D5F2C1ADC7800C1E34A /* Protector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322A7D5E2C1ADC7800C1E34A /* Protector.swift */; };
 		32320D7E2C184FA400DBCA8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32320D7D2C184FA400DBCA8B /* AppDelegate.swift */; };
 		32320D862C184FA400DBCA8B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32320D852C184FA400DBCA8B /* GameViewController.swift */; };
@@ -36,6 +38,8 @@
 		320F7BC22C26D89000551739 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		320F7BC92C26E34600551739 /* EnemyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyNode.swift; sourceTree = "<group>"; };
 		320F7BCE2C26F23F00551739 /* EnemyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyPath.swift; sourceTree = "<group>"; };
+		320F7BD02C275AE600551739 /* CCTVNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCTVNode.swift; sourceTree = "<group>"; };
+		320F7BD22C275AF400551739 /* CCTV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCTV.swift; sourceTree = "<group>"; };
 		322A7D5E2C1ADC7800C1E34A /* Protector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protector.swift; sourceTree = "<group>"; };
 		32320D7A2C184FA400DBCA8B /* PlayerMovement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerMovement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32320D7D2C184FA400DBCA8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,12 +77,13 @@
 		320F7BC62C26E22300551739 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				320F7BCD2C26E55A00551739 /* Extra */,
 				32320D9A2C185E9400DBCA8B /* PlayerFox.swift */,
 				32320D982C18569500DBCA8B /* Player.swift */,
 				32320D9E2C1897C900DBCA8B /* Enemy.swift */,
 				322A7D5E2C1ADC7800C1E34A /* Protector.swift */,
 				320F7BBF2C26D7F600551739 /* EnemyBear.swift */,
+				320F7BD22C275AF400551739 /* CCTV.swift */,
+				320F7BCD2C26E55A00551739 /* Extra */,
 				320F7BC82C26E2AE00551739 /* Guard */,
 			);
 			path = Entities;
@@ -107,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				320F7BC92C26E34600551739 /* EnemyNode.swift */,
+				320F7BD02C275AE600551739 /* CCTVNode.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -236,12 +242,14 @@
 				320F7BBE2C26D65E00551739 /* GameBorder2.swift in Sources */,
 				32320D7E2C184FA400DBCA8B /* AppDelegate.swift in Sources */,
 				320F7BBA2C26C6F700551739 /* Arrow.swift in Sources */,
+				320F7BD32C275AF400551739 /* CCTV.swift in Sources */,
 				320F7BCF2C26F23F00551739 /* EnemyPath.swift in Sources */,
 				320F7BC02C26D7F600551739 /* EnemyBear.swift in Sources */,
 				32320D952C18502500DBCA8B /* GamePlayScene.swift in Sources */,
 				32320D9F2C1897C900DBCA8B /* Enemy.swift in Sources */,
 				32320D992C18569500DBCA8B /* Player.swift in Sources */,
 				320F7BC32C26D89000551739 /* Color.swift in Sources */,
+				320F7BD12C275AE600551739 /* CCTVNode.swift in Sources */,
 				320F7BCA2C26E34600551739 /* EnemyNode.swift in Sources */,
 				32320D972C18550E00DBCA8B /* GameBorder.swift in Sources */,
 				32320D9D2C18776600DBCA8B /* ConeShape.swift in Sources */,

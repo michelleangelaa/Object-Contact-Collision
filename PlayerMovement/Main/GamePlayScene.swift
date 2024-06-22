@@ -92,7 +92,8 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         protector.physicsBody?.affectedByGravity = false
         coneShape.physicsBody?.affectedByGravity = false
         enemy.physicsBody?.affectedByGravity = false
-        enemyGuard.physicsBody?.affectedByGravity = false
+//        enemyGuard.physicsBody?.affectedByGravity = false
+        
 
         // Assign the scene as the physics world's contact delegate
         physicsWorld.contactDelegate = self
@@ -119,6 +120,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
             // Run the sequence of actions
             player.run(SKAction.sequence([moveAction, completionAction]))
         }
+    
 //    func movePlayer() {
 //        // Calculate the target position based on the direction
 //        let targetX = coneShape.position.x + 200 < protector.position.x ? protector.position.x : size.width - coneShape.frame.width / 2
