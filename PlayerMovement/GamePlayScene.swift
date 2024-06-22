@@ -9,10 +9,11 @@ import SpriteKit
 
 class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     var gameBorder = GameBorder()
-//    var player = Player()
+    var arrow = Arrow()
+    var enemyGuard = EnemyBear()
     var player = Enemy(size: CGSize(width: 100, height: 100))
     var protector = Protector(size: CGSize(width: 20, height: 100))
-    
+    var range = CameraRange()
     var moveRight = true // Flag to track the direction of movement
     let moveSpeed: CGFloat = 100
 
@@ -34,15 +35,19 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         backgroundColor = SKColor.blue
         addChild(gameBorder)
+        addChild(enemyGuard)
         gameBorder.addChild(player)
         gameBorder.addChild(protector)
         gameBorder.addChild(enemy)
+        gameBorder.addChild(arrow)
+        gameBorder.addChild(range)
         player.addChild(coneShape)
         
         // Position the cone shape relative to the player
+        range.position = CGPoint(x: 520, y: 0)
         coneShape.position = CGPoint(x: player.size.width / 2 + coneShape.frame.width / 2, y: 0) // Adjust position as needed
         protector.position = CGPoint(x: 350, y: 0)
-        enemy.position = CGPoint(x: 320, y: 0)
+        enemy.position = CGPoint(x: 400, y: 0)
         player.position = CGPoint(x: coneShape.frame.width / 2, y: 0)
         protector.zPosition = enemy.zPosition + 1
 
