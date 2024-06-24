@@ -12,45 +12,40 @@ class EnemyNode: SKNode {
         super.init()
         
         // add the guard image
-        let sprite = SKSpriteNode(imageNamed: "Bear")
-        sprite.position = CGPoint(x: 20, y: 20)
-        sprite.setScale(2)
+//        let sprite = SKSpriteNode(imageNamed: "Bear")
+//        sprite.position = CGPoint(x: 20, y: 20)
+//        sprite.setScale(2)
+        
+        let bear = EnemyBear()
+        bear.position = CGPoint(x: 20, y: 20)
+        self.setScale(2)
         
         // call the vision range
-        let range = CameraRange()
-        range.position = CGPoint(x: 2, y: -33)
+        let range = Light()
+//        range.position = CGPoint(x: -20, y: 0)
+        range.position = CGPoint(x: -3, y: 10)
         
-        // add enemy path
-        let path = EnemyPath()
-        path.position = CGPoint(x: 20, y: 20)
+        let bear2 = Bear()
+        bear2.position = CGPoint(x: 20, y: 20)
+//        bear2.anchorPoint = CGPoint(x: 0.7, y: 0.5)
         
-        // create trail path
-//        let path = UIBezierPath()
-//        let radius: CGFloat = 50.0
-//        let rect = CGRect(x: -100, y: -100, width: 200, height: 200)
-//        path.addArc(withCenter: CGPoint(x: rect.minX + radius, y: rect.minY + radius), radius: radius, startAngle: CGFloat.pi, endAngle: CGFloat.pi / 2, clockwise: false)
-//        path.addArc(withCenter: CGPoint(x: rect.maxX - radius, y: rect.minY + radius), radius: radius, startAngle: CGFloat.pi / 2, endAngle: 0, clockwise: false)
-//        path.addArc(withCenter: CGPoint(x: rect.maxX - radius, y: rect.maxY - radius), radius: radius, startAngle: 0, endAngle: -CGFloat.pi / 2, clockwise: false)
-//        path.addArc(withCenter: CGPoint(x: rect.minX + radius, y: rect.maxY - radius), radius: radius, startAngle: -CGFloat.pi / 2, endAngle: -CGFloat.pi, clockwise: false)
-//        path.close()
         
-        // Create the red path visualization
-//        let pathNode = SKShapeNode(path: path.cgPath)
-//        pathNode.strokeColor = .red
-//        pathNode.lineWidth = 2
-             
-        // appearance
-//        self.addChild(sprite)
-        self.addChild(path)
-        path.addChild(sprite)
-        sprite.addChild(range)
+        
+        self.addChild(bear)
+        self.addChild(range)
+        self.addChild(bear2)
         
         // positioning
         // Define a path for the node to move along in a square trail
-        let moveRight = SKAction.moveBy(x: 200, y: 0, duration: 2)
-        let moveUp = SKAction.moveBy(x: 0, y: 200, duration: 2)
-        let moveLeft = SKAction.moveBy(x: -200, y: 0, duration: 2)
-        let moveDown = SKAction.moveBy(x: 0, y: -200, duration: 2)
+        let moveRight = SKAction.moveBy(x: 100, y: 0, duration: 2)
+        let moveUp = SKAction.moveBy(x: 0, y: 100, duration: 2)
+        let moveLeft = SKAction.moveBy(x: -100, y: 0, duration: 2)
+        let moveDown = SKAction.moveBy(x: 0, y: -100, duration: 2)
+        
+        let moveRightLamp = SKAction.moveBy(x: 100, y: 0, duration: 2)
+        let moveUpLamp = SKAction.moveBy(x: 0, y: 100, duration: 2)
+        let moveLeftLamp = SKAction.moveBy(x: -100, y: 0, duration: 2)
+        let moveDownLamp = SKAction.moveBy(x: 0, y: -100, duration: 2)
         
         // Define actions to flip the sprite
 //        let flipHorizontallyRight = SKAction.run {
@@ -60,8 +55,41 @@ class EnemyNode: SKNode {
 //            self.xScale *= -1
 //        }
 ////        
-        let flipHorizontallyRight = SKAction.run { sprite.xScale = -2.0}
-        let flipHorizontallyLeft = SKAction.run { sprite.xScale = 2.0}
+        
+//        let flipHorizontallyRight = SKAction.run {
+//                    let flipPoint = CGPoint(x: 50, y: 50) // Custom coordinate to flip around
+//                    
+//                    // Adjust anchor point based on the custom coordinate
+//                    sprite.anchorPoint = CGPoint(x: flipPoint.x / sprite.size.width, y: flipPoint.y / sprite.size.height)
+//                    
+//                    // Flip the sprite
+//                    sprite.xScale *= -1
+//                    
+//                    // Adjust the position to compensate for anchor point change
+//                    sprite.position = CGPoint(x: sprite.position.x - (flipPoint.x - sprite.size.width / 2), y: sprite.position.y)
+//        }
+//        
+//        let flipHorizontallyLeft = SKAction.run {
+//                    let flipPoint = CGPoint(x: 50, y: 50) // Custom coordinate to flip around
+//                    
+//                    // Adjust anchor point based on the custom coordinate
+//                    sprite.anchorPoint = CGPoint(x: flipPoint.x / sprite.size.width, y: flipPoint.y / sprite.size.height)
+//                    
+//                    // Flip the sprite
+//                    sprite.xScale *= 1
+//                    
+//                    // Adjust the position to compensate for anchor point change
+//                    sprite.position = CGPoint(x: sprite.position.x - (flipPoint.x - sprite.size.width / 2), y: sprite.position.y)
+//        }
+        
+        let flipHorizontallyRight = SKAction.run { bear2.xScale = -1.0 }
+        let flipHorizontallyLeft = SKAction.run { bear2.xScale = 1.0 }
+
+//        let flipHorizontallyRight = SKAction.run { bear.xScale = -1.0 }
+//        let flipHorizontallyLeft = SKAction.run { bear.xScale = 1.0 }
+        
+        let flipHorizontallyRightLamp = SKAction.run { range.xScale = -1.0}
+        let flipHorizontallyLeftLamp = SKAction.run { range.xScale = 1.0 }
         
          
         // Create a sequence of actions with flipping included
@@ -74,16 +102,30 @@ class EnemyNode: SKNode {
             flipHorizontallyLeft
         ])
         
-        if sequence == flipHorizontallyRight {
-            range.xScale = -1.0
-            range.physicsBody?.node?.xScale = -1.0
-
-        }
+        let sequence2 = SKAction.sequence([
+            moveLeftLamp,
+            moveUpLamp,
+            flipHorizontallyRightLamp,
+            moveRightLamp,
+            moveDownLamp,
+            flipHorizontallyLeftLamp
+        ])
+        
+//        if sequence == flipHorizontallyRight {
+//            range.xScale = -1.0
+//            range.physicsBody?.node?.xScale = -1.0
+//
+//        }
 
         let repeatForever = SKAction.repeatForever(sequence)
+        let repeatForever2 = SKAction.repeatForever(sequence2)
+
+        
         
         // Run the action on the node
-        sprite.run(repeatForever)
+        bear2.run(repeatForever)
+//        bear.run(repeatForever)
+        range.run(repeatForever2)
         
     }
     

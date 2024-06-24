@@ -1,16 +1,15 @@
 //
-//  EnemyBear.swift
+//  Light.swift
 //  PlayerMovement
 //
-//  Created by Michelle Angela Aryanto on 22/06/24.
+//  Created by Michelle Angela Aryanto on 24/06/24.
 //
-
 import SpriteKit
 
-class EnemyBear: SKSpriteNode {
+class Light: SKSpriteNode {
     init() {
         // Load the image from your asset catalog
-        let texture = SKTexture(imageNamed: "Bear") // Replace "Bear" with the name of your image asset
+        let texture = SKTexture(imageNamed: "light") // Replace "Bear" with the name of your image asset
         let originalSize = texture.size()
         let scaledSize = CGSize(width: originalSize.width, height: originalSize.height)
         
@@ -21,12 +20,12 @@ class EnemyBear: SKSpriteNode {
         let physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
         physicsBody.isDynamic = true // Set to true if you want it to interact with other dynamic bodies
         self.physicsBody = physicsBody
-        physicsBody.affectedByGravity = false   
+        physicsBody.affectedByGravity = false
         physicsBody.categoryBitMask = 0
 
         
         // Set other properties as needed
-        name = "enemyBear"
+        name = "light"
     }
     
     @available(*, unavailable)

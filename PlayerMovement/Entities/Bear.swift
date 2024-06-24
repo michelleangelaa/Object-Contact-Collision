@@ -1,4 +1,11 @@
 //
+//  Bear.swift
+//  PlayerMovement
+//
+//  Created by Michelle Angela Aryanto on 24/06/24.
+//
+
+//
 //  EnemyBear.swift
 //  PlayerMovement
 //
@@ -7,10 +14,10 @@
 
 import SpriteKit
 
-class EnemyBear: SKSpriteNode {
+class Bear: SKSpriteNode {
     init() {
         // Load the image from your asset catalog
-        let texture = SKTexture(imageNamed: "Bear") // Replace "Bear" with the name of your image asset
+        let texture = SKTexture(imageNamed: "bearr") // Replace "Bear" with the name of your image asset
         let originalSize = texture.size()
         let scaledSize = CGSize(width: originalSize.width, height: originalSize.height)
         
@@ -19,11 +26,8 @@ class EnemyBear: SKSpriteNode {
         
         // Set up physics body
         let physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
-        physicsBody.isDynamic = true // Set to true if you want it to interact with other dynamic bodies
+        physicsBody.isDynamic = false // Set to true if you want it to interact with other dynamic bodies
         self.physicsBody = physicsBody
-        physicsBody.affectedByGravity = false   
-        physicsBody.categoryBitMask = 0
-
         
         // Set other properties as needed
         name = "enemyBear"
@@ -34,4 +38,5 @@ class EnemyBear: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
 

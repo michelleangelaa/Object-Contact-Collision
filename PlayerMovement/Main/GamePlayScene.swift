@@ -12,6 +12,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     var gameBorder = GameBorder()
     var arrow = Arrow()
     var enemyGuard = EnemyBear()
+    var bear = Bear()
     var player = Enemy(size: CGSize(width: 100, height: 100))
     var protector = Protector(size: CGSize(width: 20, height: 100))
     var range = CameraRange()
@@ -39,9 +40,11 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         backgroundColor = UIColor(Color.theme.floorColor)
         addChild(gameBorder)
         addChild(guardSquareTrack)
+//        addChild(bear)
+//        addChild(enemy)
         gameBorder.addChild(player)
         gameBorder.addChild(protector)
-        gameBorder.addChild(enemy)
+//        gameBorder.addChild(enemy)
         gameBorder.addChild(arrow)
         gameBorder.addChild(range)
         player.addChild(coneShape)
@@ -50,10 +53,12 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         range.position = CGPoint(x: 520, y: 0)
         coneShape.position = CGPoint(x: player.size.width / 2 + coneShape.frame.width / 2, y: 0) // Adjust position as needed
         protector.position = CGPoint(x: 350, y: 0)
-        enemy.position = CGPoint(x: 400, y: 0)
+//        enemy.position = CGPoint(x: 400, y: 0)
+        enemy.position = CGPoint(x: 100, y: 50)
         player.position = CGPoint(x: coneShape.frame.width / 2, y: 0)
         protector.zPosition = enemy.zPosition + 1
-        guardSquareTrack.position = CGPoint(x: 320, y: 40)
+        guardSquareTrack.position = CGPoint(x: 400, y: 40)
+//        bear.position = CGPoint(x: 500, y: 400)
 
         
         movePlayer()
@@ -61,7 +66,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         // Set up physics bodies for collision detection
         let enemyPhysicsSize = CGSize(width: enemy.size.width, height: enemy.size.height)
 
-        coneShape.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 100), center: CGPoint(x: 50, y: 50))
+//        coneShape.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 100), center: CGPoint(x: 50, y: 50))
         enemy.physicsBody = SKPhysicsBody(rectangleOf: enemyPhysicsSize, center: CGPoint(x: enemyPhysicsSize.width/2, y: enemyPhysicsSize.height/2))
         protector.physicsBody = SKPhysicsBody(rectangleOf: protector.size, center: CGPoint(x:protector.size.width/2, y: protector.size.height/2))
         enemyGuard.physicsBody = SKPhysicsBody(rectangleOf: enemyPhysicsSize, center: CGPoint(x: enemyPhysicsSize.width/2, y: enemyPhysicsSize.height/2))
@@ -78,6 +83,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         
         coneShape.physicsBody?.contactTestBitMask = 5 // Collides with player (1) and enemy (4)
         enemy.physicsBody?.contactTestBitMask = 5
+        enemyGuard.physicsBody?.contactTestBitMask = 5
 
         // Set the collision bit masks
         protector.physicsBody?.collisionBitMask = 0
